@@ -44,7 +44,7 @@ public class PRestController {
 	
 	@GetMapping("/mobileValidate")
 	public ResponseEntity<String> mobileNoValidation(@RequestParam("mobileNo") String mobileNo,@RequestParam("dob") String dob) {
-		int i=service.emailValidation(mobileNo,dob);
+		int i=service.mobileNoValidation(mobileNo,dob);
 		if(i>0) {
 			return new ResponseEntity<String>(HttpStatus.OK).status(1005).body("Success");
 		}else {
@@ -52,9 +52,9 @@ public class PRestController {
 		}
 	}
 	
-	@PutMapping("/emailValidate")
+	@PutMapping("/emailUpdate")
 	public ResponseEntity<String> emailUpdation(@RequestParam("email") String email,@RequestParam("policyNumber") String policyNumber) {
-		int i=service.emailValidation(email,policyNumber);
+		int i=service.emailUpdation(email,policyNumber);
 		if(i>0) {
 			return new ResponseEntity<String>(HttpStatus.OK).status(1004).body("Service Request for Mobile Number Updation Generated");
 		}else {
@@ -64,7 +64,7 @@ public class PRestController {
 	
 	@PutMapping("/mobileUpdate")
 	public ResponseEntity<String> mobileNoUpdation(@RequestParam("mobileNo") String mobileNo,@RequestParam("policyNumber") String policyNumber) {
-		int i=service.emailValidation(mobileNo,policyNumber);
+		int i=service.mobileNoUpdation(mobileNo,policyNumber);
 		if(i>0) {
 			return new ResponseEntity<String>(HttpStatus.OK).status(1004).body("Service Request for Email address Updation Generated");
 		}else {
@@ -77,6 +77,16 @@ public class PRestController {
 		int i= service.PanNoUpdation(customerPanNo,policyNumber);
 		if(i>0) {
 			return new ResponseEntity<String>(HttpStatus.OK).status(1004).body("Service Request for Pan number Updation Generated");
+		}else {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping()
+	public ResponseEntity<String> sentOtpOnMobile(String mobileNumber) {
+		int i= service.sentOtpOnMobile(mobileNumber);
+		if(i>0) {
+			return new ResponseEntity<String>(HttpStatus.OK).status(1001).body("Thank You for Optin Request Completed");
 		}else {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}

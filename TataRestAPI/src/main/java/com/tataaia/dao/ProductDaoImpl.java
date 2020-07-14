@@ -73,15 +73,10 @@ public class ProductDaoImpl implements ProductDao {
 		return q.executeUpdate();
 	}
 	
-	public String sentOtpOnMobile(String mobileNumber) {
-		String otpMsg="";
-		Query q=getSession().createQuery("From PolicyInfo where mobileNumber=:mobileNumber");
+	public int sentOtpOnMobile(String mobileNumber) {
+		Query q=getSession().createQuery("From MobileInfo where mobileNumber=:mobileNumber");
 		q.setParameter("mobileNumber", mobileNumber);
 		List<PolicyInfo> pList=q.getResultList();
-		if(pList.size()!=1) {
-			return otpMsg="Mobile Number is already opted";
-		}else {
-			return otpMsg="Optin OTP Sent on the Mobile Number";
-		}
+		return pList.size();
 	}
 }

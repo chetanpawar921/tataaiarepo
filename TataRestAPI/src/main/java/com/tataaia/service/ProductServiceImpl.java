@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public String sentOtpOnMobile(String mobileNumber) {
+	public int sentOtpOnMobile(String mobileNumber) {
 		return dao.sentOtpOnMobile(mobileNumber);
 	}
 }

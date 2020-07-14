@@ -12,5 +12,5 @@ public interface ProductDao {
 	public int emailUpdation(String email,String policyNumber);
 	public int mobileNoUpdation(String mobileNumber,String policyNumber);
 	public int PanNoUpdation(String customerPanNo,String policyNumber);
-	public String sentOtpOnMobile(String mobileNumber);
+	public int sentOtpOnMobile(String mobileNumber);
 }
