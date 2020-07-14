@@ -21,7 +21,7 @@ public class PRestController {
 	@Autowired
 	private ProductServiceImpl service;
 	
-	@GetMapping("/products")
+	@GetMapping("/getPolicyInfo")
 	public ResponseEntity<Object> getPolicyProd(@RequestParam("policyNumber") String policyNumber) {
 		List<PolicyInfo> pList = service.getPolicyData(policyNumber);
 		if(pList.size()>0) {
