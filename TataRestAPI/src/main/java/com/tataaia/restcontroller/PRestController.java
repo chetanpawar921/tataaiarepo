@@ -34,7 +34,6 @@ public class PRestController {
 	@GetMapping("/emailValidate")
 	public ResponseEntity<String> emailValidation(@RequestParam("email") String email,@RequestParam("dob") String dob) {
 		int i=service.emailValidation(email,dob);
-		ResponseEntity.status(1006).body("");
 		if(i>0) {
 			return new ResponseEntity<String>(HttpStatus.OK).status(1005).body("Success");
 		}else {
